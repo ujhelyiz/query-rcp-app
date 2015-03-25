@@ -1,0 +1,7 @@
+package querypatterns
+
+import "/Picklist.model/model/picklist.ecore";
+
+pattern picklistcheck(P)={
+	Picklist(P);
+}

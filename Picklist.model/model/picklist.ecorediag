@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_s9ZDMNHvEeSSu_5m3dUqMg" type="EcoreTools" name="picklist" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_uW83INHvEeSSu_5m3dUqMg" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_uW83I9HvEeSSu_5m3dUqMg" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_uW83JNHvEeSSu_5m3dUqMg" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_vTf-8NHvEeSSu_5m3dUqMg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="picklist.ecore#//Picklist/Name"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_vTf-8dHvEeSSu_5m3dUqMg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_AHNMsNHwEeSSu_5m3dUqMg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="picklist.ecore#//Picklist/Description"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_AHNMsdHwEeSSu_5m3dUqMg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_Cp9dUNHwEeSSu_5m3dUqMg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="picklist.ecore#//Picklist/Entry1"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Cp9dUdHwEeSSu_5m3dUqMg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_IQhdMNHwEeSSu_5m3dUqMg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="picklist.ecore#//Picklist/Entry2"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_IQhdMdHwEeSSu_5m3dUqMg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_PNpnYNHwEeSSu_5m3dUqMg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="picklist.ecore#//Picklist/Entry3"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_PNpnYdHwEeSSu_5m3dUqMg"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_uW83JdHvEeSSu_5m3dUqMg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_uW83JtHvEeSSu_5m3dUqMg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_uW83J9HvEeSSu_5m3dUqMg"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_uXGoINHvEeSSu_5m3dUqMg" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_uXGoIdHvEeSSu_5m3dUqMg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_uXGoItHvEeSSu_5m3dUqMg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_uXGoI9HvEeSSu_5m3dUqMg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_uW83IdHvEeSSu_5m3dUqMg" fontColor="4210752" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="picklist.ecore#//Picklist"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uW83ItHvEeSSu_5m3dUqMg" x="60" y="12" width="207" height="135"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_s9ZDMdHvEeSSu_5m3dUqMg"/>
+  <element xmi:type="ecore:EPackage" href="picklist.ecore#/"/>
+</notation:Diagram>
