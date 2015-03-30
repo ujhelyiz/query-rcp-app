@@ -1,13 +1,15 @@
 package querypatterns;
 
+import org.eclipse.incquery.runtime.api.IncQueryEngine;
 import org.eclipse.incquery.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
 import querypatterns.PicklistcheckMatcher;
+import querypatterns.util.PicklistcheckQuerySpecification;
 
 /**
  * A pattern group formed of all patterns defined in picklistqueries.eiq.
  * 
- * <p>Use the static instance as any {@link org.eclipse.incquery.runtime.api.IPatternGroup}, to conveniently prepare 
+ * <p>Use the static instance as any {@link org.eclipse.incquery.runtime.api.IPatternGroup}, to conveniently prepare
  * an EMF-IncQuery engine for matching all patterns originally defined in file picklistqueries.eiq,
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
@@ -38,7 +40,15 @@ public final class Picklistqueries extends BaseGeneratedPatternGroup {
   private static Picklistqueries INSTANCE;
   
   private Picklistqueries() throws IncQueryException {
-    querySpecifications.add(PicklistcheckMatcher.querySpecification());
+    querySpecifications.add(PicklistcheckQuerySpecification.instance());
     
+  }
+  
+  public PicklistcheckQuerySpecification getPicklistcheck() throws IncQueryException {
+    return PicklistcheckQuerySpecification.instance();
+  }
+  
+  public PicklistcheckMatcher getPicklistcheck(final IncQueryEngine engine) throws IncQueryException {
+    return PicklistcheckMatcher.on(engine);
   }
 }

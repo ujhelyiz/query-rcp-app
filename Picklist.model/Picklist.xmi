@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<picklist:Picklist
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:picklist="http://picklist/1.0"
+    xsi:schemaLocation="http://picklist/1.0 model/picklist.ecore"
+    Name="name"
+    Description="desc"
+    Entry1="e1"
+    Entry2="e2"
+    Entry3="e3"/>

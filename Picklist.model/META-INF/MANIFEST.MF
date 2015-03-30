@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: Picklist.model.picklist,
- Picklist.model.picklist.impl,
- Picklist.model.picklist.util
+Export-Package: picklist.model.picklist,
+ picklist.model.picklist.impl,
+ picklist.model.picklist.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -10,7 +10,7 @@
       <!-- @generated picklist -->
       <package
             uri="http://picklist/1.0"
-            class="Picklist.model.picklist.PicklistPackage"
+            class="picklist.model.picklist.PicklistPackage"
             genModel="model/picklist.genmodel"/>
    </extension>
 

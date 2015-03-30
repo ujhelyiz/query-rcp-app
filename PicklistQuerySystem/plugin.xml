@@ -1,13 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin>
-
-   <extension
-         id="querypatterns.picklistcheck"
-         point="org.eclipse.incquery.runtime.queryspecification">
-      <matcher
-            querySpecificationProvider="querypatterns.util.PicklistcheckQuerySpecification$Provider"
-            id="querypatterns.picklistcheck">
-      </matcher>
-   </extension>
-
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="querypatterns.Picklistqueries" point="org.eclipse.incquery.runtime.queryspecification">
+    <group group="org.eclipse.incquery.runtime.extensibility.SingletonExtensionFactory:querypatterns.Picklistqueries" id="querypatterns.Picklistqueries"/>
+  </extension>
 </plugin>

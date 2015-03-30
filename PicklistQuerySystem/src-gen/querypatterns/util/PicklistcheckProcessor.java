@@ -1,6 +1,5 @@
 package querypatterns.util;
 
-import Picklist.model.picklist.Picklist;
 import org.eclipse.incquery.runtime.api.IMatchProcessor;
 import querypatterns.PicklistcheckMatch;
 
@@ -14,10 +13,10 @@ import querypatterns.PicklistcheckMatch;
 public abstract class PicklistcheckProcessor implements IMatchProcessor<PicklistcheckMatch> {
   /**
    * Defines the action that is to be executed on each match.
-   * @param pP the value of pattern parameter P in the currently processed match 
+   * @param pP the value of pattern parameter P in the currently processed match
    * 
    */
-  public abstract void process(final Picklist pP);
+  public abstract void process(final picklist.model.picklist.Picklist pP);
   
   @Override
   public void process(final PicklistcheckMatch match) {

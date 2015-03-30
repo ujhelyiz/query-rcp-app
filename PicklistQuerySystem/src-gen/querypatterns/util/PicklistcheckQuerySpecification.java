@@ -1,9 +1,18 @@
 package querypatterns.util;
 
+import com.google.common.collect.Sets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import org.eclipse.incquery.runtime.api.IncQueryEngine;
 import org.eclipse.incquery.runtime.api.impl.BaseGeneratedQuerySpecification;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
-import org.eclipse.incquery.runtime.extensibility.IQuerySpecificationProvider;
+import org.eclipse.incquery.runtime.matchers.psystem.PBody;
+import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
+import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
+import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter;
+import querypatterns.PicklistcheckMatch;
 import querypatterns.PicklistcheckMatcher;
 
 /**
@@ -21,58 +30,63 @@ public final class PicklistcheckQuerySpecification extends BaseGeneratedQuerySpe
    * 
    */
   public static PicklistcheckQuerySpecification instance() throws IncQueryException {
-    try {
-    	return LazyHolder.INSTANCE;
-    } catch (ExceptionInInitializerError err) {
-    	processInitializerError(err);
-    	throw err;
-    }
+    return LazyHolder.INSTANCE;
     
   }
   
   @Override
   protected PicklistcheckMatcher instantiate(final IncQueryEngine engine) throws IncQueryException {
     return PicklistcheckMatcher.on(engine);
-    
   }
   
   @Override
-  protected String getBundleName() {
-    return "PicklistQuerySystem";
-    
-  }
-  
-  @Override
-  protected String patternName() {
+  public String getFullyQualifiedName() {
     return "querypatterns.picklistcheck";
     
   }
   
-  private PicklistcheckQuerySpecification() throws IncQueryException {
-    super();
+  @Override
+  public List<String> getParameterNames() {
+    return Arrays.asList("P");
   }
   
-  @SuppressWarnings("all")
-  public static class Provider implements IQuerySpecificationProvider<PicklistcheckQuerySpecification> {
-    @Override
-    public PicklistcheckQuerySpecification get() throws IncQueryException {
-      return instance();
+  @Override
+  public List<PParameter> getParameters() {
+    return Arrays.asList(new PParameter("P", ""));
+  }
+  
+  @Override
+  public PicklistcheckMatch newEmptyMatch() {
+    return PicklistcheckMatch.newEmptyMatch();
+  }
+  
+  @Override
+  public PicklistcheckMatch newMatch(final Object... parameters) {
+    return PicklistcheckMatch.newMatch((picklist.model.picklist.Picklist) parameters[0]);
+  }
+  
+  @Override
+  public Set<PBody> doGetContainedBodies() throws IncQueryException {
+    Set<PBody> bodies = Sets.newLinkedHashSet();
+    {
+      PBody body = new PBody(this);
+      PVariable var_P = body.getOrCreateVariableByName("P");
+      body.setExportedParameters(Arrays.<ExportedParameter>asList(
+        new ExportedParameter(body, var_P, "P")
+      ));
+      
+      new TypeUnary(body, var_P, getClassifierLiteral("http://picklist/1.0", "Picklist"), "http://picklist/1.0/Picklist");
+      bodies.add(body);
     }
+    return bodies;
   }
   
-  
-  @SuppressWarnings("all")
   private static class LazyHolder {
     private final static PicklistcheckQuerySpecification INSTANCE = make();
     
     public static PicklistcheckQuerySpecification make() {
-      try {
-      	return new PicklistcheckQuerySpecification();
-      } catch (IncQueryException ex) {
-      	throw new RuntimeException	(ex);
-      }
+      return new PicklistcheckQuerySpecification();					
       
     }
   }
-  
 }

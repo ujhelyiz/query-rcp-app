@@ -1,19 +1,19 @@
 package querypatterns;
 
-import Picklist.model.picklist.Picklist;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.incquery.runtime.api.IPatternMatch;
 import org.eclipse.incquery.runtime.api.impl.BasePatternMatch;
 import org.eclipse.incquery.runtime.exception.IncQueryException;
+import querypatterns.util.PicklistcheckQuerySpecification;
 
 /**
- * Pattern-specific match representation of the querypatterns.picklistcheck pattern, 
+ * Pattern-specific match representation of the querypatterns.picklistcheck pattern,
  * to be used in conjunction with {@link PicklistcheckMatcher}.
  * 
  * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
- * Each instance is a (possibly partial) substitution of pattern parameters, 
- * usable to represent a match of the pattern in the result of a query, 
+ * Each instance is a (possibly partial) substitution of pattern parameters,
+ * usable to represent a match of the pattern in the result of a query,
  * or to specify the bound (fixed) input parameters when issuing a query.
  * 
  * @see PicklistcheckMatcher
@@ -22,11 +22,11 @@ import org.eclipse.incquery.runtime.exception.IncQueryException;
  */
 @SuppressWarnings("all")
 public abstract class PicklistcheckMatch extends BasePatternMatch {
-  private Picklist fP;
+  private picklist.model.picklist.Picklist fP;
   
   private static List<String> parameterNames = makeImmutableList("P");
   
-  private PicklistcheckMatch(final Picklist pP) {
+  private PicklistcheckMatch(final picklist.model.picklist.Picklist pP) {
     this.fP = pP;
     
   }
@@ -38,7 +38,7 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
     
   }
   
-  public Picklist getP() {
+  public picklist.model.picklist.Picklist getP() {
     return this.fP;
     
   }
@@ -47,14 +47,14 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("P".equals(parameterName) ) {
-    	this.fP = (Picklist.model.picklist.Picklist) newValue;
+    	this.fP = (picklist.model.picklist.Picklist) newValue;
     	return true;
     }
     return false;
     
   }
   
-  public void setP(final Picklist pP) {
+  public void setP(final picklist.model.picklist.Picklist pP) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     this.fP = pP;
     
@@ -79,6 +79,12 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
   }
   
   @Override
+  public PicklistcheckMatch toImmutable() {
+    return isMutable() ? newMatch(fP) : this;
+    
+  }
+  
+  @Override
   public String prettyPrint() {
     StringBuilder result = new StringBuilder();
     result.append("\"P\"=" + prettyPrintValue(fP));
@@ -90,8 +96,8 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((fP == null) ? 0 : fP.hashCode()); 
-    return result; 
+    result = prime * result + ((fP == null) ? 0 : fP.hashCode());
+    return result;
     
   }
   
@@ -99,13 +105,13 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
   public boolean equals(final Object obj) {
     if (this == obj)
     	return true;
-    if (!(obj instanceof PicklistcheckMatch)) { // this should be infrequent				
+    if (!(obj instanceof PicklistcheckMatch)) { // this should be infrequent
     	if (obj == null)
     		return false;
     	if (!(obj instanceof IPatternMatch))
     		return false;
     	IPatternMatch otherSig  = (IPatternMatch) obj;
-    	if (!pattern().equals(otherSig.pattern()))
+    	if (!specification().equals(otherSig.specification()))
     		return false;
     	return Arrays.deepEquals(toArray(), otherSig.toArray());
     }
@@ -116,9 +122,9 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
   }
   
   @Override
-  public org.eclipse.incquery.patternlanguage.patternLanguage.Pattern pattern() {
+  public PicklistcheckQuerySpecification specification() {
     try {
-    	return PicklistcheckMatcher.querySpecification().getPattern();
+    	return PicklistcheckQuerySpecification.instance();
     } catch (IncQueryException ex) {
      	// This cannot happen, as the match object can only be instantiated if the query specification exists
      	throw new IllegalStateException	(ex);
@@ -126,9 +132,46 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
     
   }
   
-  @SuppressWarnings("all")
-  static final class Mutable extends PicklistcheckMatch {
-    Mutable(final Picklist pP) {
+  /**
+   * Returns an empty, mutable match.
+   * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
+   * 
+   * @return the empty match.
+   * 
+   */
+  public static PicklistcheckMatch newEmptyMatch() {
+    return new Mutable(null);
+    
+  }
+  
+  /**
+   * Returns a mutable (partial) match.
+   * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
+   * 
+   * @param pP the fixed value of pattern parameter P, or null if not bound.
+   * @return the new, mutable (partial) match object.
+   * 
+   */
+  public static PicklistcheckMatch newMutableMatch(final picklist.model.picklist.Picklist pP) {
+    return new Mutable(pP);
+    
+  }
+  
+  /**
+   * Returns a new (partial) match.
+   * This can be used e.g. to call the matcher with a partial match.
+   * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
+   * @param pP the fixed value of pattern parameter P, or null if not bound.
+   * @return the (partial) match object.
+   * 
+   */
+  public static PicklistcheckMatch newMatch(final picklist.model.picklist.Picklist pP) {
+    return new Immutable(pP);
+    
+  }
+  
+  private static final class Mutable extends PicklistcheckMatch {
+    Mutable(final picklist.model.picklist.Picklist pP) {
       super(pP);
       
     }
@@ -139,10 +182,8 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
     }
   }
   
-  
-  @SuppressWarnings("all")
-  static final class Immutable extends PicklistcheckMatch {
-    Immutable(final Picklist pP) {
+  private static final class Immutable extends PicklistcheckMatch {
+    Immutable(final picklist.model.picklist.Picklist pP) {
       super(pP);
       
     }
@@ -152,5 +193,4 @@ public abstract class PicklistcheckMatch extends BasePatternMatch {
       return false;
     }
   }
-  
 }
